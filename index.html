@@ -2337,9 +2337,20 @@ main {
     ctx.fillStyle = `rgb(${BG.join(',')})`;
     ctx.fillRect(0, 0, cssW, cssH);
 
-    const scale = Math.max(cssW / src.w, cssH / src.h);
-    const offX = (cssW - src.w * scale) / 2;
-    const offY = (cssH - src.h * scale) * 0.6;
+    // Frame the dancers and the laser coming down on them: the crowd is photo
+    // rows 95-135, the beam runs down columns 130-180. Desktop: the photo sits on
+    // the right with the crowd at mid-height. Phone: beam and crowd fill the top.
+    const CROWD_ROW = 115;
+    let scale, offX, offY;
+    if (cssW > 768) {
+      scale = Math.max(cssH / 142, (cssW * 0.78) / src.w);
+      offX = cssW - src.w * scale;
+      offY = Math.min(0, cssH * 0.42 - CROWD_ROW * scale);
+    } else {
+      scale = Math.max(cssW / 130, (cssH * 0.62) / src.h);
+      offX = cssW - src.w * scale;
+      offY = Math.min(0, cssH * 0.23 - CROWD_ROW * scale);
+    }
 
     let lo = 1, hi = 0;
     for (let i = 0; i < src.px.length; i += 4 * 7) {
@@ -2351,8 +2362,10 @@ main {
 
     for (let y = CELL_PX / 2; y < cssH; y += CELL_PX) {
       for (let x = CELL_PX / 2; x < cssW; x += CELL_PX) {
-        const sx = Math.min(src.w - 1, Math.max(0, Math.floor((x - offX) / scale)));
-        const sy = Math.min(src.h - 1, Math.max(0, Math.floor((y - offY) / scale)));
+        // Past the photo's edge there is nothing to draw; the masks fade it out.
+        const sx = Math.floor((x - offX) / scale);
+        const sy = Math.floor((y - offY) / scale);
+        if (sx < 0 || sy < 0 || sx >= src.w || sy >= src.h) continue;
         const i = (sy * src.w + sx) * 4;
         const r = src.px[i] / 255, g = src.px[i + 1] / 255, b = src.px[i + 2] / 255;
         const v = Math.pow(Math.min(1, Math.max(0, (luminance(src.px[i], src.px[i + 1], src.px[i + 2]) - lo) / span)), 1.15);
