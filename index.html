@@ -1496,6 +1496,21 @@ main {
 
 @media (max-width: 768px) { .send { grid-template-columns: 1fr; } }
 
+/* Outbound arrow drawn as a mask in the text colour, as on /breakdowns: the ↗
+   character is in the emoji set, and iPhone draws it as a blue tile. */
+.ext {
+  display: inline-block;
+  width: 0.62em;
+  height: 0.62em;
+  margin-left: 0.3em;
+  vertical-align: 0.05em;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2 8 8 2M3.5 2H8v4.5' fill='none' stroke='%23000' stroke-width='1.3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2 8 8 2M3.5 2H8v4.5' fill='none' stroke='%23000' stroke-width='1.3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.ext--lead { margin: 0 0.35em 0 0; }
+
 /* ---------- footer ---------- */
 
 .foot { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--divider); }
@@ -1834,11 +1849,11 @@ main {
 
           <div class="crow">
             <div class="crow__top">
-              <label class="crow__label" for="average">Each of them invites</label>
-              <span class="crow__value" id="averageValue" aria-hidden="true">0.5 people</span>
+              <label class="crow__label" for="second">Their friends who subscribe</label>
+              <span class="crow__value" id="secondValue" aria-hidden="true">2 people</span>
             </div>
-            <input class="range" id="average" type="range" min="0" step="1">
-            <p class="crow__note" id="averageNote"></p>
+            <input class="range" id="second" type="range" min="0" step="1">
+            <p class="crow__note" id="secondNote"></p>
           </div>
 
           <div class="crow">
@@ -1899,7 +1914,7 @@ main {
             <span class="story">
               <span class="story__dots"></span>
               <span class="story__title">Low End<br>Breakdown<br>EP 07</span>
-              <span class="story__sticker">↗ midee.me/r/you</span>
+              <span class="story__sticker"><span class="ext ext--lead" aria-hidden="true"></span>midee.me/r/you</span>
             </span>
             <span class="story__side"><b>Your story</b>a post you like<br>+ your link</span>
           </div>
@@ -2045,7 +2060,7 @@ main {
             <span class="ba__cap">Your track · kick + rumble</span>
             <span class="ba__row"><span class="ba__tag">Before</span><span class="ba__wave"></span></span>
             <span class="ba__row ba__row--after"><span class="ba__tag">After</span><span class="ba__wave"></span></span>
-            <span class="ba__post">↗ posted with midee.me/r/yourname</span>
+            <span class="ba__post"><span class="ext ext--lead" aria-hidden="true"></span>posted with midee.me/r/yourname</span>
           </div>
         </article>
       </div>
@@ -2124,7 +2139,7 @@ main {
           <div class="wtile__body">
             <h3 class="wtile__title">Run a school? <span class="soon">Soon</span></h3>
             <p class="wtile__text">Write to us and we'll work out terms for your school, for example access for a whole class.</p>
-            <a class="link" href="mailto:hello@midee.me?subject=Schools">Write to us about schools ↗</a>
+            <a class="link" href="mailto:hello@midee.me?subject=Schools">Write to us about schools<span class="ext" aria-hidden="true"></span></a>
           </div>
         </article>
       </div>
@@ -2147,7 +2162,7 @@ main {
             <span class="story story--big">
               <span class="story__dots"></span>
               <span class="story__title">Low End<br>Breakdown<br>EP 07</span>
-              <span class="story__sticker">↗ midee.me/r/yourname</span>
+              <span class="story__sticker"><span class="ext ext--lead" aria-hidden="true"></span>midee.me/r/yourname</span>
             </span>
             <span class="repost__lines">
               <span class="repost__cap">Add a line of your own</span>
@@ -2167,7 +2182,7 @@ main {
           <div class="wtile__body">
             <h3 class="wtile__title">Creator terms</h3>
             <p class="wtile__text">Run a channel about music production? Creators we invite get 30% in each follower's first year, then 10%.</p>
-            <a class="link" href="mailto:hello@midee.me?subject=Creator%20terms">Write to us about creator terms ↗</a>
+            <a class="link" href="mailto:hello@midee.me?subject=Creator%20terms">Write to us about creator terms<span class="ext" aria-hidden="true"></span></a>
           </div>
         </article>
       </div>
@@ -2205,7 +2220,7 @@ main {
           <div class="wtile__body">
             <h3 class="wtile__title">Have a track in mind?</h3>
             <p class="wtile__text">Tell us about the track or the release. We'll get back to you and say whether it fits the series.</p>
-            <a class="link" href="mailto:hello@midee.me?subject=Custom%20breakdown">Write to us about your track ↗</a>
+            <a class="link" href="mailto:hello@midee.me?subject=Custom%20breakdown">Write to us about your track<span class="ext" aria-hidden="true"></span></a>
           </div>
         </article>
       </div>
@@ -2636,10 +2651,10 @@ main {
   }))];
   const SCALES = {
     friends: steps([0, 30, 1], [40, 100, 10], [150, 500, 50]),
-    average: steps([0, 5, 0.5]),
+    second: steps([0, 30, 1], [40, 100, 10], [150, 500, 50]),
     audience: steps([10, 100, 10], [150, 500, 50], [600, 1000, 100], [1500, 5000, 500]),
   };
-  const state = { plan: 'monthly', friends: 5, average: 0.5, teacher: false, audience: 100 };
+  const state = { plan: 'monthly', friends: 5, second: 2, teacher: false, audience: 100 };
 
   const byId = (id) => document.getElementById(id);
   const num = (n) => n.toLocaleString('en-IE', { maximumFractionDigits: 1 });
@@ -2654,7 +2669,8 @@ main {
     const plan = TERMS.plans[state.plan];
     const base = plan.priceCents / plan.months;
     const rate = (pct) => base * pct / 100;
-    const viaFriends = state.friends * state.average;
+    // Friends of friends only exist once you have friends.
+    const viaFriends = state.friends > 0 ? state.second : 0;
     const viaAudience = state.teacher ? state.audience : 0;
     const second = viaFriends + viaAudience;
     const l1 = state.friends * rate(TERMS.firstYear.l1);
@@ -2727,8 +2743,8 @@ main {
 
     byId('friendsValue').textContent = count(state.friends, 'friend', 'friends');
     byId('friendsNote').innerHTML = `${eur(r.perFriend)} a month per friend → <b>${eur(r.l1)} / mo</b>`;
-    byId('averageValue').textContent = count(state.average, 'person', 'people');
-    byId('averageNote').innerHTML = `${eur(r.perSecond)} per person → <b>+${eur(r.viaFriends * r.perSecond)} / mo</b>`;
+    byId('secondValue').textContent = count(state.second, 'person', 'people');
+    byId('secondNote').innerHTML = `${eur(r.perSecond)} per person → <b>+${eur(r.viaFriends * r.perSecond)} / mo</b>`;
     byId('audienceValue').textContent = count(state.audience, 'person', 'people');
     byId('audienceNote').innerHTML = `${eur(r.perSecond)} per person → <b>+${eur(r.viaAudience * r.perSecond)} / mo</b>`;
 
@@ -2741,7 +2757,7 @@ main {
     if (r.month <= 0) {
       note = 'Invite one friend and the meter starts moving.';
     } else if (r.month < target) {
-      const perExtra = r.perFriend + state.average * r.perSecond;
+      const perExtra = r.perFriend + (state.friends ? state.second / state.friends : 0) * r.perSecond;
       const more = Math.max(1, Math.ceil((target - r.month) / perExtra));
       note = `<b>${count(more, 'more friend', 'more friends')}</b> and it matches the price of your own ${own.name}.`;
     } else {
@@ -2753,7 +2769,7 @@ main {
     byId('meterNote').innerHTML = note;
     setFace(r.month, target);
 
-    for (const id of ['friends', 'average', 'audience']) {
+    for (const id of ['friends', 'second', 'audience']) {
       const input = byId(id);
       input.style.setProperty('--f', input.value / input.max);
       input.setAttribute('aria-valuetext', byId(id + 'Value').textContent);
