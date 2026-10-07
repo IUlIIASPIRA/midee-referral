@@ -1982,7 +1982,7 @@ main {
             <h3 class="feature__title">Break down a track from the Track Pool <span class="soon">Soon</span></h3>
             <p class="feature__text">Learners send us tracks they want explained. That's the Track Pool. Book one, make your own breakdown, and we'll send it to everyone who asked for that track, with your link.</p>
             <ol class="feature__steps">
-              <li><span>01</span><p>Book a track from the Track Pool. It's yours for <b>14 days</b>.</p></li>
+              <li><span>01</span><p>Book a track from the Track Pool. It's yours for <b>3 days</b>.</p></li>
               <li><span>02</span><p>Make a <b>Low End</b> breakdown of it, the way the series does: rebuild the kick, rumble and bass in Ableton Live with stock devices and midee Racks.</p></li>
               <li><span>03</span><p>Publish it openly with midee's support, or anonymously.</p></li>
               <li><span>04</span><p>Upload the Ableton project to midee.</p></li>
@@ -1995,7 +1995,7 @@ main {
           <div class="feature__side">
             <ul class="qlist" aria-label="Track Pool">
               <li class="qlist__cap"><span>Track Pool · sent by learners</span><span>8 tracks</span></li>
-              <li class="qlist__row qlist__row--mine" style="--d: 0" data-track="Butter" data-artist="HVOB"><span class="thumb" style="--tone: #fdba74"></span><span class="qlist__text"><span class="qlist__track">Butter</span><span class="qlist__by">HVOB · low end, from 2:21</span></span><button type="button" class="qlist__btn" data-book>Booked · 14 days</button></li>
+              <li class="qlist__row qlist__row--mine" style="--d: 0" data-track="Butter" data-artist="HVOB"><span class="thumb" style="--tone: #fdba74"></span><span class="qlist__text"><span class="qlist__track">Butter</span><span class="qlist__by">HVOB · low end, from 2:21</span></span><button type="button" class="qlist__btn" data-book>Booked · 3 days</button></li>
               <li class="qlist__row" style="--d: 1" data-track="Schema" data-artist="Shlomi Aber"><span class="thumb" style="--tone: #a78bfa"></span><span class="qlist__text"><span class="qlist__track">Schema</span><span class="qlist__by">Shlomi Aber · low end</span></span><button type="button" class="qlist__btn" data-book>Book</button></li>
               <li class="qlist__row" style="--d: 2" data-track="East Senders" data-artist="Blame The Mono"><span class="thumb" style="--tone: #5eead4"></span><span class="qlist__text"><span class="qlist__track">East Senders</span><span class="qlist__by">Blame The Mono · low end</span></span><button type="button" class="qlist__btn" data-book>Book</button></li>
               <li class="qlist__row" style="--d: 3" data-track="Shake" data-artist="Bailey Ibbs &amp; JKS"><span class="thumb" style="--tone: #f0abfc"></span><span class="qlist__text"><span class="qlist__track">Shake</span><span class="qlist__by">Bailey Ibbs &amp; JKS · low end and the pluck</span></span><button type="button" class="qlist__btn" data-book>Book</button></li>
@@ -2944,7 +2944,7 @@ main {
       $('[data-book]', r).textContent = 'Book';
     });
     row.classList.add('qlist__row--mine');
-    btn.textContent = 'Booked · 14 days';
+    btn.textContent = 'Booked · 3 days';
     updateOpen();
   }));
   $$('[data-pub]').forEach((card) => card.addEventListener('click', () => {
